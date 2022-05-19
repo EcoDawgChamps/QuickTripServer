@@ -4,7 +4,9 @@ import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 
 import indexRouter from './routes/index.js';
-import usersRouter from './routes/users.js';
+import apiRouter from './routes/api.js'
+
+import models from './models.js';
 
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
@@ -20,7 +22,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use((req, res, next) => {
+    req.models = models;
+    next();
+});
+
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/api', apiRouter);
 
 export default app;
