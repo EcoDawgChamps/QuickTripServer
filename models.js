@@ -29,10 +29,10 @@ const main = () => {
 
     const imageSchema = new mongoose.Schema({
         car: mongoose.Types.ObjectId,
-        img: {
+        images: [{
             data: Buffer,
             contentType: String
-        }
+        }]
     });
 
     const rentalSchema = new mongoose.Schema({
