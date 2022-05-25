@@ -1,6 +1,6 @@
 import express from 'express';
 var router = express.Router();
-router.get('/', (req, res) =>{
+router.get('/', async (req, res) =>{
     try {
         if (req.query.carID) {
             allImages = await req.models.Image.find({car: req.query.carID});

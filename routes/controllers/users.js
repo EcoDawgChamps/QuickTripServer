@@ -3,6 +3,16 @@ var router = express.Router();
 import bcrypt from 'bcryptjs';
 import models from '../../models.js'
 
+router.get('/', async (req, res) => {
+  try {  
+    let user = await models.User.findById({_id: req.query.userID});
+    res.send(user);
+  } catch(err) {
+    console.log(err);
+    res.status(500).send({status: 'error', error: err});
+  }
+})
+
 // // Sign up
 router.post('/signup', async (req, res) => {
   try {

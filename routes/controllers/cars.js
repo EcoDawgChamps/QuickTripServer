@@ -6,11 +6,13 @@ router.get('/', async (req, res) => {
         let allCars = [];
         if (req.query.userID) {
             allCars = await req.models.Car.find({owner: req.query.userID});
+        } else if (req.query.carID) {
+            allCars = await req.models.Car.findById({_id: req.query.carID});
         } else {
             allCars = await req.models.Car.find();
         }
         if (req.query.numCars) {
-            allCars = allCars.slice(0, req.query.numCars);
+            allCars = allCars.slice(1, req.query.numCars);
         }
         res.send(allCars);
     } catch(err) {
