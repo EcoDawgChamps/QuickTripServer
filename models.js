@@ -37,6 +37,7 @@ const main = async () => {
 
       const rentalSchema = new mongoose.Schema({
           renter: mongoose.Types.ObjectId,
+          carID: mongoose.Types.ObjectId,
           startDate: Date,
           endDate: Date
       })
